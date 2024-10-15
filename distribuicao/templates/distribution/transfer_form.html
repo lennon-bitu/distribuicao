@@ -1,0 +1,112 @@
+<!-- distribution/templates/distribution/transfer_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuição</title>
+    <style>
+        /* Estilos básicos de página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container centralizado */
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Estilo do título */
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Estilos do formulário */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Estilo dos campos de input e textarea */
+        input[type="text"],
+        input[type="number"],
+        input[type="decimal"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Estilo do botão */
+        button {
+            padding: 12px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Estilo dos campos ao focar */
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            background-color: #fff;
+        }
+
+        /* Mensagens de erro ou sucesso */
+        .form-container p {
+            color: #ff0000;
+            font-size: 14px;
+        }
+
+        /* Ajustes para telas menores */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Informação da Distribuição</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Gerar</button>
+        </form>
+    </div>
+</body>
+</html>

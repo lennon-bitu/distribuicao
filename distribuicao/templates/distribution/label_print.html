@@ -1,0 +1,61 @@
+<!-- distribution/templates/distribution/label_print.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label Print</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Definindo a aparência da etiqueta na tela */
+        .label {
+            width: 10cm;
+            height: 15cm;
+            border: 2px solid black; /* Borda para delimitar cada etiqueta */
+            margin: 10px; /* Espaçamento entre as etiquetas na visualização */
+            padding: 1cm;
+            display: inline-block; /* Permitir que as etiquetas fiquem lado a lado na visualização */
+            box-sizing: border-box;
+        }
+
+        /* Configurações específicas para a impressão */
+        @media print {
+            /* Remover margens e ajustar tamanho da página de impressão */
+            @page {
+                size: 10cm 15cm;
+                margin: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .label {
+                width: 10cm;
+                height: 15cm;
+                border: none; /* Remover a borda para impressão */
+                margin: 0;
+                page-break-after: always; /* Quebra de página após cada etiqueta */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="labels">
+        {% for label in labels %}
+            <div class="label">
+                <p><strong>Destino:</strong> {{ transfer.destination }}</p>
+                <p><strong> Nº Transf.:</strong> {{ transfer.transfer_number }}</p>
+                <p><strong>Peso:</strong> {{ transfer.weight }} kg</p>
+                <p><strong>Volume:</strong> {{ forloop.counter }} / {{ transfer.volume }}</p>
+                <p><strong>Observação:</strong> {{ transfer.observation }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
